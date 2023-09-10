@@ -1,7 +1,7 @@
 {
     "name": "IDmelon Reader",
     "short_name": "IDmelon Reader",
-    "start_url": "/",
+    "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#fdfdfd",
     "theme_color": "#db4938",
@@ -9,8 +9,13 @@
     "icons": [
       {
         "src": "./assets/icon.ico",
-        "sizes": "192x192",
+        "sizes": "256x256",
         "type": "icon/ico"
+      },
+      {
+        "src": "./assets/jin.png",
+        "sizes": "144x144",
+        "type": "image/png"
       }
     ]
   }

@@ -4,7 +4,7 @@ var idBItCounts = new sdk.IdBItCounts();
 var isDeviceConnect = false;
 var actConfig;
 
-if ("serviceWorker" in navigator) {
+if (navigator.serviceWorker) {
     window.addEventListener("load", function () {
         navigator.serviceWorker
             .register("serviceWorker.js")
