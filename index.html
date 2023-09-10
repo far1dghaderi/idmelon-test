@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./PcProxApi-WebSDK/pcProxAPI.js"></script>
+    <script src="./PcProxApi-WebSDK/bundle.js"></script>
+    <script src="./index.js"></script>
+    <link rel="shortcut icon" href="#">
+    <link rel="manifest" href="manifest.json">
+</head>
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+        pointer-events: none;
+    }
+</style>
+
+<body>
+    <div>
+        <input id="connect" type="button" role="button" value="Connect"  onclick="!isDeviceConnect && connect(); "/>
+        <input id="disconnect" type="button" value="Disconnect" onclick="disconnect();" />
+        <input id="write" type="button" value="Write" onclick="writeCFG();" />
+        <input type="button" value="getLastLibError" onclick="getLastLibErr();" /> <br><br>
+
+        <label for="vendorId">Part Number: </label>
+        <input type="text" name="vendorId" placeholder="Reader part number" id="vendor" value=""
+            readonly="readonly"><br><br>
+        <label for="actConfig">Get Active Configuration: </label>
+        <input type="text" name="actConfig" placeholder="Active Configuration" id="actConfigID" value=""
+            readonly="readonly"><br><br>
+
+        <div>
+            <label>Select option for Configuration :</label>
+            <select id="config" onchange="setCurrActConfig()">
+                <option value="0">1</option>
+                <option value="1">2</option>
+                <option value="2">3</option>
+                <option value="3">4</option>
+            </select>
+        </div><br>
+        <div style="display: flex;flex-direction: row;">
+
+            <div style="background-color: #e0e0e0;padding: 15px;">
+                <h4>SDK</h4>
+                <label for="vendorId">Disable Keystrokes for SDK <input type="checkbox" id="bHaltKBSnd"
+                        onchange="setCfgFlags_bHaltKBSnd()" /><br><br>
+                    <h4>Data Format</h4>
+                    Strip leading bit count <button onclick="decreaseLeadParityBitCnt()">-</button>
+                    <input class="inputTagLead" style="width:50px" id="leadParityBitCnt" type="number"
+                        onKeyPress="if(this.value.length>2) return false;" min="0" max="142"
+                        onblur="if(this.value>142) { this.value=142;setLeadParityBitCnt(parseInt(142))}"
+                        onchange="setLeadParityBitCnt(parseInt(this.value))" />
+                    <button onclick="increaseLeadParityBitCnt()">+</button><br><br>
+                    Strip trailing bit count <button onclick=" decreaseTrailParityBitCnt()">-</button>
+                    <input class="inputTagTrail" style="width:50px" id="trailParityBitCnt" type="number"
+                        onKeyPress="if(this.value.length>2) return false;" min="0" max="142"
+                        onblur="if(this.value>142){ this.value=142;setTrailParityBitCnt(parseInt(142))}"
+                        onchange=" setTrailParityBitCnt(parseInt(this.value))" />
+                    <button onclick="increaseTrailParityBitCnt()">+</button>
+                    <div style="background-color: #e0e0e0;">
+                        <h4>Test Area</h4>
+                        <textarea id="testArea" style=" width: 400px; height: 110px; "></textarea></br></br>
+                        <input id="clear" type="button" value="Clear"
+                            onclick="document.getElementById('testArea').value='';" />
+                    </div>
+            </div><br><br>
+            <div style="background-color: #e0e0e0;padding: 15px;">
+                <h4>Card ID</h4>
+                <div>
+                    <input id="getId" type="button" style="width:100px" value="GetID" onclick="getActiveID();" />
+                    </br></br>
+                    <input id="getId32" type="button" style="width:100px" value="GetID32" onclick="getActiveID32();" />
+                </div>
+            </div>
+            <div style="background-color: #e0e0e0;padding: 15px;">
+                <h4>Data Bytes</h4>
+                <textarea id="databytes" style="width: 400px; height: 110px;" readonly></textarea>
+            </div>
+        </div>
+    </div>
+    <script>
+        const restrictedLeadInput = document.querySelector('.inputTagLead');
+        restrictedLeadInput.addEventListener("keypress", function (evt) {
+            if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
+                evt.preventDefault();
+            }
+        });
+        const restrictedTrailInput = document.querySelector('.inputTagTrail');
+        restrictedTrailInput.addEventListener("keypress", function (evt) {
+            if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
+                evt.preventDefault();
+            }
+        });
+    </script>
+</body>
+
+</html>
