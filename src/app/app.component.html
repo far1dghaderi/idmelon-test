@@ -1,0 +1,15 @@
+<input id="connect" type="button" value="Connect" (click)="deviceConnect();" />
+<input id="disconnect" type="button" value="Disconnect" (click)="disconnect();" /><br><br>
+
+<label for="vendorId">Part Number: </label>
+<input type="text" name="vendorId" placeholder="Reader part number" id="vendor" value="" readonly="readonly"><br><br>
+
+<div style="background-color: #e0e0e0;padding: 15px;">
+    <div>
+        <input id="getId" type="button" style="width:100px" value="GetID" (click)="getActiveID();" />
+        <input id="getId32" type="button" style="width:100px" value="GetID32" (click)="getActiveID32();" />
+    </div>
+    <div style="background-color: #e0e0e0;padding: 15px;">
+        <textarea id="databytes" style="width: 400px; height: 110px;" readonly></textarea>
+    </div>
+</div>
