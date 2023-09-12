@@ -1,0 +1,10 @@
+{
+    "name": "IDmelon Reader",
+    "short_name": "IDmelon Reader",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#fdfdfd",
+    "theme_color": "#db4938",
+    "orientation": "portrait-primary",
+    "icons": []
+  }
